@@ -1,27 +1,64 @@
-# arduino-uno-morse-code
-This is a library to output morse code on any pin on the arduino uno (or it's clones)
+# Morse Code Library For Arduino IDE
+This library allows the generation of Morse code signals through an Arduino pin.
+It provides functions for setting pin outputs, adjusting Morse code speed (WPM), and converting characters to Morse code signals.
 
-## Usage
-text_to_morse("Your sentence here")
-    This is used to convert sentences to morse code, as of now special charecters, and **UPPER CASE LETTERS are not *yet* supported**
+### **USAGE**
 
-dot(number of times to transmit) is pretty self explanatory;
+#### `MORSE_PIN = 13;`
+- **Description**: Sets the pin that will output Morse code signals.
+- The Variable is already set in the header file Morse.h, please dont re-initialize it
+  
+#### `UNIT_TIME = 150;`
+- **Description**: Sets the speed of the Morse code transmission in milliseonds.
+  - **Note**: The time for a dot is calculated as `1200 / wpm`ms, which adjusts the speed of transmission.
+- The Variable is already set in the header file Morse.h, please dont re-initialize it
 
-same with dash(number of times to transmit);
 
-## Configuration
-At the top of the file arduino-uno-morse-code.ino
+#### `dot(int n)`
+- **Description**: Sends the dot (dit) signal for a specified number of repetitions.
+- **Parameters**:
+  - `n`: The number of dots to send. MUST BE GREATER THAN OR EQUAL TO 1
+  
+#### `dash(int n)`
+- **Description**: Sends the dash (dah) signal for a specified number of repetitions.
+- **Parameters**:
+  - `n`: The number of dots to send. MUST BE GREATER THAN OR EQUAL TO 1
+  
+#### `char_to_morse(char c)`
+- **Description**: Converts a single character to its Morse code equivalent and sends the signal for that character.
+- **Parameters**:
+  - `c`: The character to convert to Morse code. This function handles both uppercase and lowercase letters, digits, and space.
+  - **Supported characters**:
+    - Letters: a-z (both uppercase and lowercase).
+    - Digits: 0-9.
+    - Space (`' '`): Represents a word space.
 
-you can set the time period of a dot
-and the time period of a dash as a multiple of the dot's time period (it's a standard)
+#### ` string_to_morse(String mCode)`
+- **Description**: Converts an entire string to Morse code and transmits it, character by character.
+- **Parameters**:
+  - `mCode`: The string to convert to Morse code.
 
-You can calculate the speed in wpm by:
-    UNIT_TIME = 1200 / w
+---
 
-where w is in words per minute and UNIT_TIME in ms
+### **Usage Example**
 
-You can also mess with Space Time and stuff
-(just make sure you dont create a black hole by tearing the fabric)
+```cpp
+#include "Morse.h"
 
-oh, and setting the morse pin as well
-it's the first line.
+void setup()
+{
+    MORSE_PIN = 13; //set morse output pin
+    UNIT_TIME = 150; //Time of dot in milliseconds (1200/wpm)  
+    // int UNIT_TIME = 150; is wrong, dont do it
+}
+void loop()
+{
+    string_to_morse("HELLO WORLD");// Transmit the string "HELLO WORLD" repeatedly
+}
+```
+
+### **Explanation**
+- In the example above, the `setup()` function configures the Morse code output pin and speed
+- The `string_to_morse()` function calls `char_to_morse()` for each character in the string, converting them to their Morse code representation and transmitting them through the output pin.
+---
+
