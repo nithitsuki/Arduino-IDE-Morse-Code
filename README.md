@@ -2,6 +2,10 @@
 This library allows the generation of Morse code signals through an Arduino pin.
 It provides functions for setting pin outputs, adjusting Morse code speed (WPM), and converting characters to Morse code signals.
 
+### **IMPORT THE LIBRARY**
+Go to your Arduno IDE > Sketch > Add File...
+and choose the Morse.h you downloaded from the Release page
+
 ### **USAGE**
 
 #### `MORSE_PIN = 13;`
