@@ -61,8 +61,15 @@ void loop()
 }
 ```
 
-### **Explanation**
-- In the example above, the `setup()` function configures the Morse code output pin and speed
-- The `string_to_morse()` function calls `char_to_morse()` for each character in the string, converting them to their Morse code representation and transmitting them through the output pin.
 ---
 
+### Supported Characters
+This library supports the following characters:
++ **Letters**: `a-z` (both uppercase and lowercase)
++ **Digits**: `0-9`
++ **Space**: Used to represent a word space in Morse code.
++ **few special chaarcters** . , ? ' ! / ( ) & : ; = + - \ " $ _ 
+
+---
+
+I’d love to see the projects you create with it! Please share them with me if you can.
