@@ -10,12 +10,12 @@ and choose the Morse.h you downloaded from the Release page
 
 #### `MORSE_PIN = 13;`
 - **Description**: Sets the pin that will output Morse code signals.
-- The Variable is already set in the header file Morse.h, please dont re-initialize it
+- The Variable is already set in the header file Morse.h, please dont re-define it
   
 #### `UNIT_TIME = 150;`
 - **Description**: Sets the speed of the Morse code transmission in milliseonds.
   - **Note**: The time for a dot is calculated as `1200 / wpm`ms, which adjusts the speed of transmission.
-- The Variable is already set in the header file Morse.h, please dont re-initialize it
+- The Variable is already set in the header file Morse.h, please dont re-define it
 
 
 #### `dot(int n)`
@@ -52,12 +52,15 @@ and choose the Morse.h you downloaded from the Release page
 void setup()
 {
     MORSE_PIN = 13; //set morse output pin
+    //Make Sure to set said morse pin to output
+    pinMode(MORSE_PIN, OUTPUT);
     UNIT_TIME = 150; //Time of dot in milliseconds (1200/wpm)  
     // int UNIT_TIME = 150; is wrong, dont do it
 }
 void loop()
 {
-    string_to_morse("HELLO WORLD");// Transmit the string "HELLO WORLD" repeatedly
+    string_to_morse("HELLO WORLD");
+    // Transmit the string "HELLO WORLD" repeatedly
 }
 ```
 
